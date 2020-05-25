@@ -13,11 +13,11 @@
       <img src="./img/1317012-c118-i-full-2.png" alt="">
       <p>Cédric</p>
     </button>
-    <div class="card" aria-labelledby="cedric">
-      <p>Personnalité : Paresseux</p>
-      <p>Anniversaire : 11 avril</p>
-      <p>Expression : "blébléblé"</p>
-      <p>Musique : Romance Kéké</p>
+    <div class="card" aria-labelledby="cedric" hidden>
+      <p>Personnalité : Paresseux
+        Anniversaire : 11 avril
+        Expression : "blébléblé"
+        Musique : Romance Kéké</p>
     </div>
   </div>
   <div class="dream">
@@ -26,10 +26,10 @@
       <p>Linette</p>
     </button>
     <div class="card" aria-labelledby="linette">
-      <p>Personnalité : Normale</p>
-      <p>Anniversaire : 27 mars</p>
-      <p>Expression : "ron-ron"</p>
-      <p>Musique : Flânerie Kéké</p>
+      <p>Personnalité : Normale
+        Anniversaire : 27 mars
+        Expression : "ron-ron"
+        Musique : Flânerie Kéké</p>
     </div>
   </div>
   <div class="dream">
@@ -296,15 +296,73 @@
   </div>
 
   <style>
+    .modal-outer {
+      display: grid;
+      background: hsla(50, 100%, 50%, 0.7);
+      position: fixed;
+      height: 100vh;
+      width: 100vw;
+      top: 0;
+      left: 0;
+      justify-content: center;
+      align-items: center;
+      /* Hide this modal until we need it */
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
 
+    .modal-outer.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-inner {
+      max-width: 600px;
+      min-width: 400px;
+      padding: 2rem;
+      border-radius: 5px;
+      min-height: 200px;
+      background: white;
+      transform: translateY(-200%);
+      transition: transform 2s;
+    }
+
+    .modal-outer.open .modal-inner {
+      transform: translateY(0);
+    }
   </style>
 
   <script>
-    const dreamButton = document.querySelectorAll('.dream button')
+    const dreamButtons = document.querySelectorAll('.dream button')
     const modalOuter = document.querySelector('.modal-outer');
     const modalInner = document.querySelector('.modal-inner');
+    const card = document.querySelector('.card');
+    const cardInners = Array.from(document.querySelectorAll('.card'));
 
+    function handleButtonClick(event) {
+      const button = event.currentTarget;
+      const { id } = event.currentTarget
+      const text = card.querySelector('p').textContent;
+      console.log(text)
+      const cardInner = cardInners.find(
+        panel => panel.getAttribute('aria-labelledby') === id
+      );
+      // Populate the modal with the new info
+      modalInner.innerHTML = `
+  <p>${text}</p>
+  `;
+      // Show the modal
+      modalOuter.classList.add('open');
+    }
 
+    dreamButtons.forEach(button =>
+      button.addEventListener('click', handleButtonClick)
+    );
+
+    function closeModal() {
+      modalOuter.classList.remove('open');
+    }
 
     modalOuter.addEventListener('click', function (event) {
       const isOutside = !event.target.closest('.modal-inner');
