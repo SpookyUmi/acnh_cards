@@ -12,6 +12,9 @@
 <body>
   <section class="header">
     <h1>ACNH Dreamies Cards</h1>
+    <section class="horizons">
+      <img src="./img/nh.png" alt="">
+    </section>
   </section>
   <section role="buttons" class="buttons">
     <button id="cedric">
@@ -310,7 +313,7 @@
       --acnhblue: hsl(210, 100%, 80%);
       --acnhlightbrown: hsla(29, 40%, 60%, 1);
       --acnhdarkbrown: hsla(29, 30%, 30%, 1);
-      --acnhleaf: hsl(175, 68%, 69%);
+      --acnhleaf: hsl(175, 55%, 69%);
     }
 
     html {
@@ -328,19 +331,32 @@
     body {
       /* font-family: 'Karla', sans-serif; */
       font-family: 'Patrick Hand', cursive;
-      background: url(./img/y5mzeig307b41.png);
+      background: url(./img/wallhaven-1joxx9.jpg);
     }
 
     .header {
       margin: 2rem;
       background: rgba(99, 76, 54, 0.9);
       border-radius: 10px;
+      display: flex;
+      justify-content: center;
     }
 
     .header h1 {
       color: var(--acnhsand);
       text-align: center;
       font-size: 5rem;
+      margin-right: 1rem;
+    }
+
+    .horizons {
+      width: 12rem;
+      margin-left: 1rem;
+    }
+
+    .header img {
+      width: 100%;
+      transform: rotate(-0.05turn);
     }
 
     .buttons {
@@ -385,7 +401,6 @@
     .open {
       margin: 4rem auto;
       background: var(--acnhsand);
-      /* background: linear-gradient(var(--acnhblue), var(--acnhgreen)); */
       border: 10px solid var(--acnhleaf);
       border-radius: 8px;
       box-shadow: 0 0 20px hsla(29, 30%, 30%, 0.6);
@@ -402,25 +417,12 @@
     }
 
     .open p {
-      color: var(--acnhleaf);
+      color: rgba(99, 76, 54, 0.9);
     }
 
     .open strong {
       color: var(--acnhdarkbrown);
     }
-
-    /*  .border {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: center;
-      width: 100%;
-      height: 100%;
-      border: 2px solid var(--acnhdarkbrown);
-      /* border-radius: 8px; */
-    }
-
-    */
   </style>
 
   <script>
